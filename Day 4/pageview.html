@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mining Sites Map</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: {lat: -25.363, lng: 131.044}  // Center the map
+            });
+
+            // Load GeoJSON data
+            map.data.loadGeoJson('mining_sites.geojson');
+
+            // Style the features
+            map.data.setStyle({
+                fillColor: 'green',
+                strokeWeight: 1
+            });
+
+            // Add a listener for clicks on the features
+            map.data.addListener('click', function(event) {
+                var content = '<h3>' + event.feature.getProperty('site_name') + '</h3>' +
+                              '<p>Mineral Type: ' + event.feature.getProperty('mineral_type') + '</p>';
+                var infowindow = new google.maps.InfoWindow({
+                    content: content,
+                    position: event.latLng
+                });
+                infowindow.open(map);
+            });
+        }
+    </script>
+</head>
+<body onload="initMap()">
+    <div id="map" style="height: 500px; width: 100%;"></div>
+</body>
+</html>
