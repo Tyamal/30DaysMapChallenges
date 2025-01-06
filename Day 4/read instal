@@ -1,0 +1,4 @@
+Summary
+1. Extract data from your ArcGIS database using SQL.
+2. Transform the data into a suitable format (like GeoJSON) using a programming language.
+3. Load the transformed data into Google Maps using the Google Maps JavaScript API.
