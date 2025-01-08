@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mala Mapping - Jakarta Timur</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mala Mapping in Jakarta Timur, Indonesia</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([-6.2152, 106.8451], 12); // Centered on Jakarta Timur
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add a marker for "Mala" (example coordinates)
+        const malaLocation = L.marker([-6.2152, 106.8451]).addTo(map);
+        malaLocation.bindPopup('<b>Mala</b><br>This is a location related to Mala.').openPopup();
+
+        // Optionally, you can add more markers or features related to "Mala"
+        // Example: Adding more markers
+        const additionalLocations = [
+            { name: "Location 1", coords: [-6.2200, 106.8500] },
+            { name: "Location 2", coords: [-6.2100, 106.8400] }
+        ];
+
+        additionalLocations.forEach(location => {
+            L.marker(location.coords)
+                .addTo(map)
+                .bindPopup(`<b>${location.name}</b><br>Details about ${location.name}.`);
+        });
+    </script>
+</body>
+</html>
