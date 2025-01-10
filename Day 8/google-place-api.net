@@ -1,0 +1,7 @@
+private const string API_KEY = "<YOUR_API_KEY_HERE>";
+
+string postBody = "{ \"textQuery\": \"" + searchTerm + "\", " + 
+                  "   \"locationBias\": { \"circle\": { " + 
+                  "      \"center\": { \"latitude\": " + lat + ", \"longitude\": " + lon + " }, " + 
+                  "      \"radius\": 10000 }" + 
+                  "   } }";
