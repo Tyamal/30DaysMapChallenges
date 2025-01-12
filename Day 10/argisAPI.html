@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Map with ArcGIS</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+    <style>
+        html, body, #viewDiv {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewDiv"></div>
+
+    <script src="https://js.arcgis.com/4.23/"></script>
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/SceneView",
+            "esri/WebMap"
+        ], function(Map, SceneView, WebMap) {
+            // Create a WebMap instance
+            const webMap = new WebMap({
+                portalItem: { // autocasts as new PortalItem()
+                    id: "your-webmap-id" // Replace with your WebMap ID
+                }
+            });
+
+            // Create a SceneView instance
+            const view = new SceneView({
+                container: "viewDiv", // Reference to the scene div created in HTML
+                map: webMap, // Set the map to the WebMap instance
+                viewingMode: "global", // Set the viewing mode to global
+                camera: { // Set the initial camera position
+                    position: [0, 0, 20000000], // Longitude, Latitude, and altitude
+                    tilt: 0 // Tilt angle
+                }
+            });
+
+            // Optional: Add event listeners or additional functionality here
+        });
+    </script>
+</body>
+</html>
